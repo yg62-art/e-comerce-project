@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
@@ -22,32 +21,11 @@ function MainContent() {
     <>
       {!hideNavbar && <Navbar />}
       <Routes>
-        <Route path="/" Component={Login} />
-        <Route path="/login" Component={Login} />
-        <Route 
-          path="/products" 
-          element={
-            <ProtectedRoute>
-              <Products />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/cart" 
-          element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       </Routes>
     </>
   );
