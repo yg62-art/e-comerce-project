@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Login() {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,6 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     setError('');
     setLoading(true);
@@ -24,10 +26,10 @@ export default function Login() {
 
       const data = response.data;
       
-      localStorage.setItem('token', data.token);
+localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
       
-      window.location.href = '/products';
+      navigate('/products');
 
     } catch (err) {
       console.error('Login error:', err);
@@ -38,6 +40,7 @@ export default function Login() {
   };
 
   return (
+
     <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <Card style={{ width: '400px' }} className="p-4 shadow-sm">
         <Card.Body>
